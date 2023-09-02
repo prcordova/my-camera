@@ -93,18 +93,6 @@ export default function App() {
     );
   }
 
-  async function saveToGallery() {
-    if (capturedPhoto) {
-      try {
-        const asset = await MediaLibrary.createAssetAsync(capturedPhoto);
-        await MediaLibrary.createAlbumAsync("ExpoCameraExample", asset, false);
-        alert("Foto salva na galeria com sucesso!");
-      } catch (error) {
-        alert("Erro ao salvar a foto na galeria: " + error);
-      }
-    }
-  }
-
   function toggleCameraType() {
     setType((current) =>
       current === CameraType.back ? CameraType.front : CameraType.back
