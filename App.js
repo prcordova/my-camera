@@ -70,11 +70,25 @@ export default function App() {
           style={styles.preview}
           source={{ uri: "data:image/jpg;base64," + photo.base64 }}
         />
-        <Button title="Share" onPress={sharePhoto} />
-        {hasMediaLibraryPermission ? (
-          <Button title="Save" onPress={savePhoto} />
-        ) : undefined}
-        <Button title="Discard" onPress={() => setPhoto(undefined)} />
+        <View style={styles.buttonImageCapturedContainer}>
+          <TouchableOpacity style={styles.shareButton} onPress={sharePhoto}>
+            <FontAwesome name="share" size={23} color="red"></FontAwesome>
+          </TouchableOpacity>
+
+          {hasMediaLibraryPermission ? (
+            <TouchableOpacity style={styles.saveButton} onPress={savePhoto}>
+              <FontAwesome name="save" size={23} color="red"></FontAwesome>
+            </TouchableOpacity>
+          ) : undefined}
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => {
+              setPhoto(undefined);
+            }}
+          >
+            <FontAwesome name="close" size={23} color="red"></FontAwesome>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
   }
@@ -128,8 +142,20 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+    width: "100%",
+    height: "100%",
     flexDirection: "row",
     backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "space-between",
+  },
+  buttonImageCapturedContainer: {
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "space-between",
   },
   btnCapture: {
     position: "absolute",
@@ -138,6 +164,43 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FF0000",
+    margin: 20,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+  },
+  shareButton: {
+    position: "absolute",
+    bottom: 50,
+    right: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    margin: 20,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+  },
+  closeButton: {
+    position: "absolute",
+    bottom: 50,
+    left: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    margin: 20,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+  },
+  saveButton: {
+    position: "absolute",
+    bottom: 50,
+
+    right: 130,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
     margin: 20,
     height: 50,
     width: 50,
